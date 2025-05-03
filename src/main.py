@@ -151,14 +151,20 @@ def main(page: ft.Page):
         fecha_hasta_btn.disabled = True
         page.update()
 
-        desde = txt_fecha_desde.data.replace("-", "")[2:]
-        hasta = txt_fecha_hasta.data.replace("-", "")[2:]
+        # Modificar esta parte para formatear correctamente las fechas
+        desde_date = datetime.datetime.fromisoformat(txt_fecha_desde.data).date()
+        hasta_date = datetime.datetime.fromisoformat(txt_fecha_hasta.data).date()
+        
+        desde = desde_date.strftime("%y%m%d")  # Formato YYMMDD
+        hasta = hasta_date.strftime("%y%m%d")  # Formato YYMMDD
+        
         params = {"desde": desde, "hasta": hasta}
 
         nombre = nombre_raw.strip()
         if nombre:
             params["contribuyente"] = nombre
 
+        # Resto del código permanece igual...
         cancelados = 0
         data = []
 
