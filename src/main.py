@@ -73,7 +73,7 @@ def main(page: ft.Page):
             contribuyente_input
         ]),
         padding=20,
-        bgcolor=ft.colors.RED,
+        bgcolor="#ff6038",
         border_radius=ft.BorderRadius(0, 0, 20, 20)
     )
 
