@@ -2,7 +2,7 @@ import flet as ft
 import datetime
 import requests
 
-API_URL = "https://api-refaccionaria-production-d753.up.railway.app/"
+API_URL = "https://api-telchac-pueblo-production.up.railway.app/"
 
 def main(page: ft.Page):
     page.theme_mode = ft.ThemeMode.LIGHT
