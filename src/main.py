@@ -1,6 +1,7 @@
 import flet as ft
-import datetime
+from datetime import datetime
 import requests
+import pytz
 
 API_URL = "https://api-telchac-pueblo-production.up.railway.app/"
 
@@ -15,7 +16,8 @@ def main(page: ft.Page):
     tamanio_pagina = 100
 
 
-    hoy = datetime.date.today()
+    zona_horaria = pytz.timezone("America/Merida")
+    hoy = datetime.now(zona_horaria).date()
     hoy_str = hoy.isoformat()
 
     logo = ft.Image(
@@ -36,7 +38,7 @@ def main(page: ft.Page):
 
     def actualizar_fecha(txt, nueva_fecha):
         txt.data = nueva_fecha
-        txt.value = datetime.datetime.fromisoformat(nueva_fecha).strftime("%d-%m-%Y")
+        txt.value = datetime.fromisoformat(nueva_fecha).strftime("%d-%m-%Y")
         page.update()
 
     date_picker_desde = ft.DatePicker(on_change=lambda e: actualizar_fecha(txt_fecha_desde, e.data))
@@ -151,9 +153,8 @@ def main(page: ft.Page):
         fecha_hasta_btn.disabled = True
         page.update()
 
-        # Modificar esta parte para formatear correctamente las fechas
-        desde_date = datetime.datetime.fromisoformat(txt_fecha_desde.data).date()
-        hasta_date = datetime.datetime.fromisoformat(txt_fecha_hasta.data).date()
+        desde_date = datetime.fromisoformat(txt_fecha_desde.data).date()
+        hasta_date = datetime.fromisoformat(txt_fecha_hasta.data).date()
         
         desde = desde_date.strftime("%y%m%d")  # Formato YYMMDD
         hasta = hasta_date.strftime("%y%m%d")  # Formato YYMMDD
