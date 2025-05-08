@@ -189,7 +189,7 @@ def main(page: ft.Page):
                     ft.Text(f"Total Neto: ${float(d.get('total_neto', 0)):,.2f}", size=22, weight=ft.FontWeight.BOLD),
                     ft.Text(f"Total Descuento: ${float(d.get('total_descuento', 0)):,.2f}", size=16, weight=ft.FontWeight.BOLD),
                     ft.Text(f"Recibos encontrados: {len(data)}", size=14, color=ft.colors.BLACK),
-                    ft.Text(f"Recibos cancelados: {cancelados}", size=14, color=ft.colors.RED_700)
+                    ft.Text(f"Recibos cancelados: {d.get('cantidad_status_1', 0)}", size=14, color=ft.colors.RED_700)
                 ])
         except Exception as e:
             print("Error al obtener totales:", str(e))
